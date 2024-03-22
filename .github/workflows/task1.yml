@@ -1,0 +1,28 @@
+name: task1
+on:
+    push:
+        branches: [task1]
+jobs:
+    check:
+        runs-on: ubuntu-latest
+        steps:
+            - name: copy files
+              uses: actions/checkout@v3
+            - name: install
+              run: sudo apt update && sudo apt install build-essential
+            - name: build
+              run: |
+                g++ -c $(find . -type f -not -path "./tasks/*" -name "*.cpp")
+                g++ $(find . -type f -name "*.o") -o task
+            - name: test
+              run: |
+                for (( i=1; i<=3; i++ ))
+                do
+                  ./task "./tasks/task1/input${i}.txt" "output${i}.txt"
+                done
+            - name: check
+              run: |
+                for (( i=1; i<=3; i++ ))
+                do
+                  diff "output${i}.txt" "./tasks/task1/output${i}.txt"
+                done
