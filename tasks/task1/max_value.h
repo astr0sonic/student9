@@ -1,1 +1,1 @@
-double calculateMaxValue(double* nums);
+double calculateMaxValue(double* nums, int n);

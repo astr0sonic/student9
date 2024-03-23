@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
 
     in.close();
 
-    double result = calculateMaxValue(nums);
+    double result = calculateMaxValue(nums, n);
     delete[] nums;
 
     ofstream out(argv[2]);
