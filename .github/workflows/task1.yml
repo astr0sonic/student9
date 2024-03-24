@@ -5,6 +5,12 @@ on:
 jobs:
     check:
         runs-on: ubuntu-latest
+        env:
+          TaskPath: ./tasks/task1
+          InputFileName: input
+          OutputFileName: output
+          TestsCount: 3
+          ProgramName: task
         steps:
             - name: copy files
               uses: actions/checkout@v4
@@ -12,17 +18,17 @@ jobs:
               run: sudo apt update && sudo apt install build-essential
             - name: build
               run: |
-                g++ -c $(find . -type f -not -path "./tasks/*" -name "*.cpp")
-                g++ $(find . -type f -name "*.o") -o task
+                g++ -c $(find . -maxdepth 1 -type f -name "*.cpp")
+                g++ $(find . -maxdepth 1 -type f -name "*.o") -o ${ProgramName}
             - name: test
               run: |
-                for (( i=1; i<=3; i++ ))
+                for (( i=1; i<=${TestsCount}; i++ ))
                 do
-                  ./task "./tasks/task1/input${i}.txt" "output${i}.txt"
+                  "./${ProgramName}" "${TaskPath}/${InputFileName}${i}.txt" "${OutputFileName}${i}.txt"
                 done
             - name: check
               run: |
-                for (( i=1; i<=3; i++ ))
+                for (( i=1; i<=${TestsCount}; i++ ))
                 do
-                  diff "output${i}.txt" "./tasks/task1/output${i}.txt"
+                  diff "${OutputFileName}${i}.txt" "${TaskPath}/${OutputFileName}${i}.txt"
                 done
