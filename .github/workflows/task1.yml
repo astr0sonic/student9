@@ -1,12 +1,13 @@
-name: task1
+name: taskN-checker
 on:
-    push:
-        branches: [task1]
+  push:
+    branches:
+      - "!main"
 jobs:
     check:
         runs-on: ubuntu-latest
         env:
-          TaskPath: ./tasks/task1
+          TaskPath: "./tasks/${GITHUB_REF##*/"
           InputFileName: input
           OutputFileName: output
           TestsCount: 3
