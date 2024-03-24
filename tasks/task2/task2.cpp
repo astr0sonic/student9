@@ -16,6 +16,8 @@ int main(int argc, char** argv) {
     
     vector<int>::iterator it = primes.begin();
     out << *it;
+    it++;
+
     for (; it != primes.end(); it++) {
         out << ", " << *it;
     }
