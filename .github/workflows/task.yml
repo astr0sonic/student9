@@ -31,5 +31,7 @@ jobs:
               run: |
                 for (( i=1; i<=${TestsCount}; i++ ))
                 do
+                  echo "test ${i}"
                   diff "${OutputFileName}${i}.txt" "${TaskPath}/${OutputFileName}${i}.txt"
+                  echo ok
                 done
