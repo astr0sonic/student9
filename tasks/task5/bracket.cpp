@@ -1,5 +1,5 @@
 #include "bracket.h"
 
-bool checkBrackets(std::string s) {
+bool checkBrackets(const std::string& s) {
     return true;
 }

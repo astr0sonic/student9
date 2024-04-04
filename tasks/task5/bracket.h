@@ -1,4 +1,3 @@
-#include <vector>
 #include <string>
 
-bool checkBrackets(std::string s);
+bool checkBrackets(const std::string& s);
