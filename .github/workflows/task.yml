@@ -13,6 +13,11 @@ jobs:
           TestsCount: 3
           ProgramName: task
         steps:
+            - name: check tests count
+              run: |
+                if [ ${{ github.ref_name }} == "task7" ]; then
+                  TasksCount=6
+                fi
             - name: copy files
               uses: actions/checkout@v4
             - name: install
