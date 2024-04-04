@@ -7,8 +7,8 @@ using namespace std;
 int main(int argc, char** argv) {
     ifstream in(argv[1]);
 
-    string expr;
-    in >> expr;
+    string expr = "";
+    getline(in, expr);
     in.close();
 
     double value = 0.0;
