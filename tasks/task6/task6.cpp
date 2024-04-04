@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
     double value = calculateRPN(expr); 
 
     ofstream out(argv[2]);
-    out << setprecision(3) << value << endl;
+    out << fixed << setprecision(3) << value << endl;
     out.close();
 
     return 0;
