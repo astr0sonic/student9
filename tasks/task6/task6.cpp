@@ -1,4 +1,5 @@
 #include <fstream>
+#include <iomanip>
 #include "rpn.h"
 
 using namespace std;
@@ -13,7 +14,7 @@ int main(int argc, char** argv) {
     double value = calculateRPN(expr); 
 
     ofstream out(argv[2]);
-    out << value << endl;
+    out << setprecision(3) << value << endl;
     out.close();
 
     return 0;
