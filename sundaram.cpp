@@ -3,6 +3,8 @@
 std::vector<int> sieve(int n) {
     std::vector<int> primes;
     primes.push_back(2);
+	
+	n = (n - 1) / 2;
 
 	bool* a = new bool[n + 1];
 	for (int i = 0; i <= n; i++)
