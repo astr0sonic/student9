@@ -2,7 +2,7 @@
 
 std::vector<int> sieve(int n) {
     std::vector<int> primes;
-    primes.push_back(2);
+
 
 	bool* a = new bool[n];
 	for (int i = 0; i < n; i++)
