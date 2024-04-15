@@ -19,7 +19,7 @@ std::vector<int> sieve(int n) {
 	for (int i = 1; i <= n; i++)
 	{
 		if (a[i])
-			ans.push_back(2 * i + 1);
+			primes.push_back(2 * i + 1);
 	}
     return primes;
 }
