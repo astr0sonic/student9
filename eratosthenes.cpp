@@ -3,23 +3,23 @@
 std::vector<int> sieve(int n) {
     std::vector<int> primes;
 
-
-	bool* a = new bool[n];
+	bool* a = new bool[n + 1];
 	for (int i = 0; i < n; i++)
 		a[i] = 1;
 
-	for (int p = 0; (p + 2) * (p + 2) <= n; p++)
+	a[0] = 0;
+	a[1] = 0;
+
+	for (int i = 0; i <= n; i++)
 	{
-		for (int i = p + 1; i < n; i++)
-		{
-			if ((i + 2) % (p + 2) == 0)
-				a[i] = 0;
-		}
+		if (a[i])
+			for (int j = 2 * i; j <= n; j += i)
+				a[j] = false;
 	}
 
 	for (int i = 0; i < n; i++)
 		if (a[i] == 1)
-			primes.push_back(i + 2);
+			primes.push_back(i);
 
     return primes;
 }
