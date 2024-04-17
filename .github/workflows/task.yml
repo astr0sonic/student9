@@ -15,9 +15,11 @@ jobs:
         steps:
             - name: check tests count
               run: |
-                if [ ${{ github.ref_name }} == task7 ]; then
+                case ${{ github.ref_name }} in
+                "task7" | "task10")
                   echo "TestsCount=6" >> $GITHUB_ENV
-                fi
+                  ;;
+                esac
             - name: copy files
               uses: actions/checkout@v4
             - name: install
