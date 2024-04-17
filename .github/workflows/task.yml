@@ -16,7 +16,7 @@ jobs:
             - name: check tests count
               run: |
                 case ${{ github.ref_name }} in
-                "task7" | "task10")
+                "task7" | "task9"| "task10")
                   echo "TestsCount=6" >> $GITHUB_ENV
                   ;;
                 esac
