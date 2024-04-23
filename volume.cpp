@@ -1,4 +1,6 @@
 #include "volume.h"
+#include<string>
+#include<stack>
 
 int getMaxVolume(int a, int b, int c, int n, int* arr) {
 	std::stack<char> t;
