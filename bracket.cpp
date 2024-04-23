@@ -1,8 +1,8 @@
-#include "volume.h"
+#include "bracket.h"
 #include<string>
 #include<stack>
 
-int getMaxVolume(int a, int b, int c, int n, int* arr) {
+bool checkBrackets(const std::string& s) {
 	std::stack<char> t;
 	for (int i = 0; i < s.length(); i++) {
 		if (s[i] == '(' || s[i] == ')' || s[i] == '{' || s[i] == '}' ||
