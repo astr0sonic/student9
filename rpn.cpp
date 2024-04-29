@@ -1,8 +1,9 @@
 #include "rpn.h"
 #include<list>
+#include<string>
 
 double calculateRPN(const std::string& expr) {
-	list<double>lst;
+	std::list<double>lst;
 	for (int i = 0; i < expr.length(); i++)
 	{
 		char c = expr[i];
