@@ -7,7 +7,7 @@ double calculateRPN(const std::string& expr) {
 	for (int i = 0; i < expr.length(); i++)
 	{
 		char c = expr[i];
-		if (is_digit(c))
+		if (c >= 48 && c <= 57)
 		{
 			lst.push_back(c - '0');
 		}
