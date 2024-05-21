@@ -5,12 +5,12 @@ void prefFunc(std::string P, int*& arr)
 {
 	int len = 0;
 	arr[0] = 0;
-	int ñ = 1;
-	while (ñ < P.length()) {
-		if (P[ñ] == P[len]) {
+	int c = 1;
+	while (c < P.length()) {
+		if (P[c] == P[len]) {
 			len++;
-			arr[ñ] = len;
-			ñ++;
+			arr[c] = len;
+			c++;
 		}
 		else
 		{
@@ -19,15 +19,14 @@ void prefFunc(std::string P, int*& arr)
 			}
 			else
 			{
-				arr[ñ] = 0;
-				ñ++;
+				arr[c] = 0;
+				c++;
 			}
 		}
 	}
 }
 
 std::vector<int> getIndices(const std::string& my_template, const std::string& text) {
-    std::vector<int> result;
 	std::vector<int> result;
 	std::string P = my_template, T = text;
 	int pl = P.length(), tl = T.length();
