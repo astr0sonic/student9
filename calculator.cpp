@@ -34,60 +34,55 @@ bool checkExpression(const std::string& s)
 }
 
 std::string postfixExp(std::string exp)
-{
-	if (checkExpression(exp)) {
-		std::string s;
-		for (int i = 0; i < exp.length(); i++)
+{	std::string s;
+	for (int i = 0; i < exp.length(); i++)
+	{
+		if (exp[i] == '-' && exp[i - 1] == '(')
 		{
-			if (exp[i] == '-' && exp[i - 1] == '(')
-			{
-				exp = exp.substr(0, i) + "0 " + exp.substr(i, exp.length() - i);
-			}
+			exp = exp.substr(0, i) + "0 " + exp.substr(i, exp.length() - i);
 		}
-		std::stack<char> opst;
-		std::map<char, int> prio{ {'+',6}, {'-', 6}, {'*',8}, {'/', 8}, {'^', 9}, {'(', -1} };
-		for (int i = 0; i < exp.length(); i++)
+	}
+	std::stack<char> opst;
+	std::map<char, int> prio{ {'+',6}, {'-', 6}, {'*',8}, {'/', 8}, {'^', 9}, {'(', -1} };
+	for (int i = 0; i < exp.length(); i++)
+	{
+		char c = exp[i];
+		if (c >= 48 && c <= 57 || c == '.' || c == ' ')
 		{
-			char c = exp[i];
-			if (c >= 48 && c <= 57 || c == '.' || c == ' ')
-			{
-				s = s + c;
+			s = s + c;
+		}
+		else
+			if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^') {
+				while (!opst.empty() && prio[opst.top()] >= prio[c])
+				{
+					s = s + opst.top() + ' ';
+					opst.pop();
+				}
+				opst.push(c);
 			}
 			else
-				if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^') {
-					while (!opst.empty() && prio[opst.top()] >= prio[c])
-					{
-						s = s + opst.top() + ' ';
-						opst.pop();
-					}
+				if (c == '(')
 					opst.push(c);
-				}
 				else
-					if (c == '(')
-						opst.push(c);
-					else
-						if (c == ')') {
-							while (opst.top() != '(')
-							{
-								s = s + opst.top() + ' ';
-								opst.pop();
-							}
+					if (c == ')') {
+						while (opst.top() != '(')
+						{
+							s = s + opst.top() + ' ';
 							opst.pop();
 						}
-		}
-
-		while (!opst.empty())
-		{
-			if (opst.top() == '(')
-				exit(1);
-			else
-				if (opst.top() != '(')
-					s = s + opst.top() + ' ';
-			opst.pop();
-		}
-		return s;
+						opst.pop();
+					}
 	}
-	throw "invalid";
+	while (!opst.empty())
+	{
+		if (opst.top() == '(')
+			exit(1);
+		else
+			if (opst.top() != '(')
+				s = s + opst.top() + ' ';
+		opst.pop();
+	}
+	return s;
 }
 
 double st(double a, int b)
@@ -98,7 +93,11 @@ double st(double a, int b)
 	return k;
 }
 
-double calculate(const std::string& expr) {
+double calculate(const std::string& expr) 
+{
+	if (!checkExpression(expr)) {
+		throw exception("invalid");
+	}
 	std::string exp = postfixExp(expr);
 	std::list<double>lst;
 	std::string num;
