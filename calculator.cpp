@@ -96,7 +96,7 @@ double st(double a, int b)
 double calculate(const std::string& expr) 
 {
 	if (!checkExpression(expr)) {
-		throw exception("invalid");
+		throw std::exception("invalid");
 	}
 	std::string exp = postfixExp(expr);
 	std::list<double>lst;
