@@ -1,5 +1,5 @@
 #include "calculator.h"
-#include<string>
+#include<cstring>
 #include<stack>
 #include<map>
 #include<list>
