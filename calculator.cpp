@@ -33,8 +33,17 @@ bool checkExpression(const std::string& s)
 	return false;
 }
 
+double st(double a, int b)
+{
+	double k = a;
+	for (int i = 1; i < b; i++)
+		k *= a;
+	return k;
+}
+
 std::string postfixExp(std::string exp)
-{	std::string s;
+{
+	std::string s;
 	for (int i = 0; i < exp.length(); i++)
 	{
 		if (exp[i] == '-' && exp[i - 1] == '(')
@@ -73,6 +82,7 @@ std::string postfixExp(std::string exp)
 						opst.pop();
 					}
 	}
+
 	while (!opst.empty())
 	{
 		if (opst.top() == '(')
@@ -85,25 +95,14 @@ std::string postfixExp(std::string exp)
 	return s;
 }
 
-double st(double a, int b)
+double calculateExpr(const std::string exp)
 {
-	double k = a;
-	for (int i = 1; i < b; i++)
-		k *= a;
-	return k;
-}
-
-double calculate(const std::string& expr) 
-{
-	if (!checkExpression(expr)) {
-		throw std::exception();
-	}
-	std::string exp = postfixExp(expr);
+	std::string exppfx = postfixExp(exp);
 	std::list<double>lst;
 	std::string num;
-	for (int i = 0; i < exp.length(); i++)
+	for (int i = 0; i < exppfx.length(); i++)
 	{
-		char c = expr[i];
+		char c = exppfx[i];
 		if (c >= 48 && c <= 57 || c == '.')
 		{
 			num += c;
@@ -157,4 +156,11 @@ double calculate(const std::string& expr)
 		}
 	}
 	return lst.back();
+}
+
+double calculate(const std::string& expr) {
+	if (checkExpression(expr))
+		return calculateExpr(expr);
+	else
+		throw std::exception();
 }
