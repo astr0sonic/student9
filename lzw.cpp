@@ -19,7 +19,7 @@ std::vector<int> compress(const std::string& text) {
         else {
             compressed.push_back(dictionary[current]);
             dictionary[next] = dictionary.size();
-            current = string(1, c);
+            current = std::string(1, c);
         }
     }
     if (!current.empty()) {
